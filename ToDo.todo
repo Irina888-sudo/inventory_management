@@ -1,0 +1,59 @@
+[Swing UI]
+      ↓
+[Service (logique métier)]
+      ↓
+[DAO]
+      ↓
+[PostgreSQL]
+
+TABLE
+Product
+- id
+- name
+- method (FIFO / LIFO / CUMP)
+
+StockMovement
+- id
+- product_id
+- type (IN / OUT)
+- quantity
+- unit_price
+- date
+
+🧠 CŒUR DU PROJET
+StockService
+addEntry()
+addExit()
+calculateFIFO()
+calculateLIFO()
+calculateCUMP()
+getStockState()
+
+FIFO : trier mouvements par date ASC
+retirer anciens lots d’abord
+
+LIFO : trier date DESC
+retirer récents d’abord
+
+CUMP : CUMP = valeur totale / quantité totale
+sortie = quantité × CUMP
+
+SWING
+1. ProductForm
+2. MovementForm
+3. StockTable + HistoryTable
+
+🕒 PLAN 3 HEURES (CRITIQUE)
+⏱ 0h – 30 min
+Créer DB + tables
+Tester SQL
+⏱ 30 min – 1h15
+DAO + models
+StockService (logique)
+⏱ 1h15 – 2h15
+Swing UI (simple forms)
+connexion service
+⏱ 2h15 – 3h
+tests FIFO / LIFO / CUMP
+affichage tableau
+debug
