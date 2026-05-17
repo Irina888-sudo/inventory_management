@@ -3,9 +3,11 @@ javac $(find . -name "*.java")
 
 javac -d out -cp .:postgresql-42.7.11.jar $(find . -name "*.java")
 java -cp out:postgresql-42.7.11.jar ui.MainApp
+rm -rf out/*
 
-
-
+psql -U postgres
+\c stock
+\conninfo
 
 [Swing UI]
       ↓
@@ -66,3 +68,16 @@ connexion service
 tests FIFO / LIFO / CUMP
 affichage tableau
 debug
+
+
+
+Je veux modifier l'interface.
+Pour la premiere affichage on a 3 boutons 
+1- Liste des produits : On liste tous les produits stocker [Date, Nom, type, prix unitaire, quantite, stock actuel, prix du stock]
+2- Ajouter ou sortir  un produit : 
+      a/ bouton ajouter :  Un formulaire pour ajouter un nouveau produit [Date, Nom, type, prix unitaire, quantite, stock actuel], le prix du stock calcule automatiquement Prix unitaire * quantite
+      b/ bouton sortir :  Un formulaire pour sortir un produit existant [Date, Nom, type, prix unitaire, quantite, stock actuel], le prix du stock calcule automatiquement Prix unitaire * quantite
+3- Historique des mouvements : Affiche tous les mouvements de stock [Nom du produit, type de mouvement, quantité, prix unitaire, date]
+Mais avant tout ca si vous avez des questions vouw pouvez me les poser pour mieux comprendre le projet et les attentes.
+
+

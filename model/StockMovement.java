@@ -1,4 +1,11 @@
 package model;
+import dao.*;
+import model.*;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class StockMovement {
@@ -29,4 +36,16 @@ public class StockMovement {
     public void setUnitPrice(double unitPrice) { this.unitPrice = unitPrice; }
     public LocalDate getMovementDate() { return movementDate; }
     public void setMovementDate(LocalDate movementDate) { this.movementDate = movementDate; }
+
+
+    public String findLastEntryDate(int productId) throws SQLException {
+    String sql = "SELECT movement_date FROM stock_movements WHERE product_id=? AND movement_type='IN' ORDER BY movement_date DESC LIMIT 1";
+    try (Connection c = DBConnection.getConnection();
+         PreparedStatement ps = c.prepareStatement(sql)) {
+        ps.setInt(1, productId);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) return rs.getDate("movement_date").toString();
+    }
+    return "-";
+}
 }

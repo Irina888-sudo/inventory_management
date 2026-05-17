@@ -1,9 +1,6 @@
 package service;
-import dao.ProductDAO;
-import dao.StockMovementDAO;
-import model.MovementType;
-import model.Product;
-import model.StockMovement;
+import dao.*;
+import model.*;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
@@ -132,4 +129,20 @@ public double getTotalIN(int productId) throws SQLException {
         if (m.getMovementType() == MovementType.IN) total += m.getQuantity();
     return total;
 }
+
+public Product findProductByName(String name) throws SQLException {
+    return productDAO.findAll().stream()
+        .filter(p -> p.getName().equalsIgnoreCase(name))
+        .findFirst().orElse(null);
+}
+
+public String getLastEntryDate(int productId) throws SQLException {
+    return movementDAO.findLastEntryDate(productId);
+}
+
+public double calculateExitPrice(int id, double qty) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'calculateExitPrice'");
+}
+
 }

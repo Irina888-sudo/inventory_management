@@ -1,5 +1,6 @@
-import model.MovementType;
-import model.StockMovement;
+package dao;
+import model.*;
+import dao.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,5 +62,18 @@ public class StockMovementDAO {
         if (rs.next()) return rs.getDouble("unit_price");
     }
     return 0;
+}
+
+    public String findLastEntryDate(int productId) throws SQLException {
+    String sql = "SELECT movement_date FROM stock_movements " +
+                 "WHERE product_id=? AND movement_type='IN' " +
+                 "ORDER BY movement_date DESC LIMIT 1";
+    try (Connection c = DBConnection.getConnection();
+         PreparedStatement ps = c.prepareStatement(sql)) {
+        ps.setInt(1, productId);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) return rs.getDate("movement_date").toString();
+    }
+    return "-";
 }
 }
