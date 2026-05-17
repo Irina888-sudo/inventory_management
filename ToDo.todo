@@ -1,3 +1,12 @@
+COMMANDE
+javac $(find . -name "*.java")
+
+javac -d out -cp .:postgresql-42.7.11.jar $(find . -name "*.java")
+java -cp out:postgresql-42.7.11.jar ui.MainApp
+
+
+
+
 [Swing UI]
       ↓
 [Service (logique métier)]
