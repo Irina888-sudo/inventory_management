@@ -1,0 +1,14 @@
+explication de double calculateWeighted dans StockService.java
+remaining = 250
+Tour 1 — Lot1 (200 unités à 1.50€)
+take      = min(200, 250) = 200
+totalCost = 200 × 1.50   = 300€
+remaining = 250 - 200    = 50   ← il reste 50 à prendre
+Tour 2 — Lot2 (100 unités à 1.80€)
+take      = min(100, 50) = 50   ← je prends 50 du lot2, pas 100
+totalCost = 300 + 50×1.80 = 300 + 90 = 390€
+remaining = 50 - 50      = 0    ← terminé
+Tour 3 — Lot3
+remaining = 0 → STOP → Lot3 ignoré
+Résultat :
+prix = 390 / 250 = 1.56€ par unité

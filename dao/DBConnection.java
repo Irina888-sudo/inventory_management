@@ -1,12 +1,37 @@
 package dao;
 
-import java.sql.*;
-
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
 
 public class DBConnection {
-    private static final String URL  = "jdbc:postgresql://localhost:5432/stock";
-    private static final String USER = "postgres";
-    private static final String PASS = "stock"; // à modifier
+
+   
+    private static final String URL;
+    private static final String USER;
+    private static final String PASS;
+
+    static {
+        Properties props = new Properties();
+        try {
+            InputStream in = DBConnection.class
+                .getClassLoader()
+                .getResourceAsStream("config.properties");
+
+            if (in == null)
+                throw new RuntimeException("config.properties introuvable !");
+
+            props.load(in); 
+        } catch (Exception e) {
+            throw new RuntimeException("Erreur config : " + e.getMessage());
+        }
+       
+        URL  = props.getProperty("db.url");
+        USER = props.getProperty("db.user");
+        PASS = props.getProperty("db.password");
+    }
 
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASS);

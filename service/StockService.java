@@ -68,7 +68,7 @@ public class StockService {
         return totalCost / qtyNeeded; // prix unitaire moyen
     }
 
-    // ── CUMP : moyenne pondérée de toutes les entrées ───────
+    
     public double calculateCUMP(int productId) throws SQLException {
         List<StockMovement> all = movementDAO.findByProduct(productId, true);
         double totalCost = 0, totalQty = 0;
@@ -131,9 +131,7 @@ public double getTotalIN(int productId) throws SQLException {
 }
 
 public Product findProductByName(String name) throws SQLException {
-    return productDAO.findAll().stream()
-        .filter(p -> p.getName().equalsIgnoreCase(name))
-        .findFirst().orElse(null);
+    return productDAO.findByName(name); // plus de stream inutile
 }
 
 public String getLastEntryDate(int productId) throws SQLException {

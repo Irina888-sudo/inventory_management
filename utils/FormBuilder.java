@@ -12,9 +12,9 @@ public class FormBuilder {
      * REFLECTION : lit les champs déclarés d'une classe
      * et génère automatiquement JLabel + JTextField pour chacun.
      *
-     * @param modelClass  la classe à inspecter (ex: Product.class)
-     * @param panel       le JPanel où ajouter les champs
-     * @param exclude     noms de champs à ignorer (ex: "id")
+     * @param modelClass  
+     * @param panel       
+     * @param exclude    
      * @return Map<nomChamp, JTextField> pour récupérer les valeurs
      */
     public static Map<String, JTextField> buildForm(
