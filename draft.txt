@@ -12,3 +12,39 @@ Tour 3 — Lot3
 remaining = 0 → STOP → Lot3 ignoré
 Résultat :
 prix = 390 / 250 = 1.56€ par unité
+
+
+
+ALÉA 1 — Très haute probabilité ⭐⭐⭐⭐⭐
+"Ajoutez une colonne min_stock (seuil d'alerte) dans products. Affichez une alerte visuelle dans ProductListPage si le stock actuel est en dessous."
+Réponse attendue — dans l'ordre :
+1. SQL :
+sqlALTER TABLE products ADD COLUMN min_stock DECIMAL(10,2) DEFAULT 0;
+2. Product.java — ajoute l'attribut :
+javaprivate double minStock;
+public double getMinStock() { return minStock; }
+public void setMinStock(double minStock) { this.minStock = minStock; }
+3. ProductDAO.java — modifie mapRow seulement :
+javaprivate Product mapRow(ResultSet rs) throws SQLException {
+    Product p = new Product(
+        rs.getInt("id"),
+        rs.getString("name"),
+        StockMethod.valueOf(rs.getString("stock_method")),
+        rs.getString("unit")
+    );
+    p.setMinStock(rs.getDouble("min_stock")); // ← ajoute
+    return p;
+}
+4. ProductListPage.java — colorie la ligne en rouge :
+javafor (Product p : products) {
+    double stock = service.getStock(p.getId());
+    boolean alerte = stock < p.getMinStock(); // ← vérifie seuil
+
+    model.addRow(new Object[]{
+        date, p.getName(), p.getStockMethod().name(),
+        String.format("%.2f €", pu),
+        totalIN, stock,
+        String.format("%.2f €", stock * pu),
+        alerte ? "⚠ ALERTE" : "OK"  // ← nouvelle colonne
+    });
+}

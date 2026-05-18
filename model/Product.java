@@ -5,6 +5,7 @@ public class Product {
     private String name;
     private StockMethod stockMethod;
     private String unit;
+    private double minStock;
 
     public Product() {}
     public Product(int id, String name, StockMethod stockMethod, String unit) {
@@ -20,6 +21,9 @@ public class Product {
     public void setStockMethod(StockMethod stockMethod) { this.stockMethod = stockMethod; }
     public String getUnit() { return unit; }
     public void setUnit(String unit) { this.unit = unit; }
+    public double getMinStock() { return minStock; }
+    public void setMinStock(double minStock) { this.minStock = minStock; }
+    
 
     @Override
     public String toString() { return name; } // utile pour JComboBox

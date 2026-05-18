@@ -109,6 +109,7 @@ public class AddProductPage extends JPanel {
         card.add(content, BorderLayout.CENTER);
         outer.add(card);
         add(outer, BorderLayout.CENTER);
+       
 
         // ── Action enregistrer ───────────────────────────────
         btnSave.addActionListener(e -> {
@@ -116,6 +117,14 @@ public class AddProductPage extends JPanel {
                 // Récupère les valeurs via la Map Reflection
                 String name   = reflFields.get("name").getText().trim();
                 String unit   = reflFields.get("unit").getText().trim();
+                double minStock = 0;
+                try {
+                    String minStockText = reflFields.get("minStock").getText().trim();
+                    if (!minStockText.isEmpty())
+                        minStock = Double.parseDouble(minStockText);
+                } catch (NumberFormatException ex) {
+                    throw new IllegalArgumentException("Stock minimum invalide.");
+                }
                 StockMethod method = (StockMethod) cbMethod.getSelectedItem();
                 double pu     = Double.parseDouble(tfPU.getText().trim());
                 double qty    = Double.parseDouble(tfQty.getText().trim());
@@ -124,8 +133,11 @@ public class AddProductPage extends JPanel {
                 Product p = service.findProductByName(name);
                 if (p == null) {
                     p = new Product(0, name, method, unit);
+                    p.setMinStock(minStock);
                     service.addProduct(p);
                     p = service.findProductByName(name);
+                } else if (!reflFields.get("minStock").getText().trim().isEmpty()) {
+                    service.updateProductMinStock(p.getId(), minStock);
                 }
                 service.addEntry(p.getId(), qty, pu, date);
                 JOptionPane.showMessageDialog(this, "✅  Entrée enregistrée !");

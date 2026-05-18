@@ -118,6 +118,10 @@ public class StockService {
         productDAO.insert(p);
     }
 
+    public void updateProductMinStock(int productId, double minStock) throws SQLException {
+        productDAO.updateMinStock(productId, minStock);
+    }
+
     public double getLastUnitPrice(int productId) throws SQLException {
     return movementDAO.findLastUnitPrice(productId);
 }
@@ -143,4 +147,8 @@ public double calculateExitPrice(int id, double qty) {
     throw new UnsupportedOperationException("Unimplemented method 'calculateExitPrice'");
 }
 
+public List <Product> searchProducts (String Keyword) throws SQLException {
+    return productDAO.findByNameContaining(Keyword);
 }
+}
+

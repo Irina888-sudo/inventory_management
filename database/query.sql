@@ -3,6 +3,7 @@ CREATE TABLE products (
     name          VARCHAR(100) NOT NULL,
     stock_method  VARCHAR(4) NOT NULL CHECK (stock_method IN ('FIFO','LIFO','CUMP')),
     unit          VARCHAR(20)
+    ,min_stock     DECIMAL(10,2) DEFAULT 0
 );
 
 CREATE TABLE stock_movements (
@@ -13,3 +14,6 @@ CREATE TABLE stock_movements (
     unit_price     DECIMAL(10,2),
     movement_date  DATE NOT NULL
 );
+
+
+UPDATE products SET min_stock = 3 WHERE id = 2;

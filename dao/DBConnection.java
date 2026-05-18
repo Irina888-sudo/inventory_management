@@ -20,6 +20,17 @@ public class DBConnection {
                 .getClassLoader()
                 .getResourceAsStream("config.properties");
 
+            if (in == null) {
+                // Fallback : cherche le fichier dans le dossier de travail
+                java.nio.file.Path path = java.nio.file.Paths.get("config.properties");
+                if (!java.nio.file.Files.exists(path)) {
+                    path = java.nio.file.Paths.get("database", "config.properties");
+                }
+                if (java.nio.file.Files.exists(path)) {
+                    in = java.nio.file.Files.newInputStream(path);
+                }
+            }
+
             if (in == null)
                 throw new RuntimeException("config.properties introuvable !");
 
