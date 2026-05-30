@@ -71,13 +71,73 @@ debug
 
 
 
-Je veux modifier l'interface.
-Pour la premiere affichage on a 3 boutons 
-1- Liste des produits : On liste tous les produits stocker [Date, Nom, type, prix unitaire, quantite, stock actuel, prix du stock]
-2- Ajouter ou sortir  un produit : 
-      a/ bouton ajouter :  Un formulaire pour ajouter un nouveau produit [Date, Nom, type, prix unitaire, quantite, stock actuel], le prix du stock calcule automatiquement Prix unitaire * quantite
-      b/ bouton sortir :  Un formulaire pour sortir un produit existant [Date, Nom, type, prix unitaire, quantite, stock actuel], le prix du stock calcule automatiquement Prix unitaire * quantite
-3- Historique des mouvements : Affiche tous les mouvements de stock [Nom du produit, type de mouvement, quantité, prix unitaire, date]
-Mais avant tout ca si vous avez des questions vouw pouvez me les poser pour mieux comprendre le projet et les attentes.
+
+□ Squelette complet MovementFormPage.java
+□ Ajout dans sidebar MainFrame.java
 
 
+
+□ 1. Listener JComboBox type (IN/OUT)
+      → si IN  : rendre tfPrix visible
+      → si OUT : cacher tfPrix
+
+□ 2. Calcul auto stock actuel
+      → quand produit change OU quantité saisie
+      → si IN  : stock = getStock() + qty
+      → si OUT : stock = getStock() - qty
+
+□ 3. Calcul auto valeur
+      → si IN  : valeur = qty × prixSaisi
+      → si OUT : valeur = qty × calculateExitPrice()
+
+□ 4. Validation formulaire
+      → produit sélectionné ?
+      → quantité > 0 ?
+      → si OUT : stock suffisant ?
+
+□ 5. Action bouton Enregistrer
+      → si IN  : service.addEntry(productId, qty, pu, date)
+      → si OUT : service.addExit(productId, qty, date)
+      → afficher message succès
+      → rediriger vers DashboardPage
+
+
+
+      
+TO DO — 2 heures chrono
+
+🕐 00:00 — 00:10 (10 min) — Je génère
+□ Squelette MovementFormPage.java
+□ Ajout sidebar MainFrame.java
+□ Compilation test → java -cp out:postgresql-42.7.11.jar ui.MainFrame
+
+🕐 00:10 — 00:30 (20 min) — Listener IN/OUT
+□ JComboBox type change → affiche/cache tfPrix
+□ Test visuel : sélectionne IN → prix visible
+□ Test visuel : sélectionne OUT → prix caché
+
+🕐 00:30 — 00:55 (25 min) — Calculs auto
+□ Calcul stock actuel (IN et OUT)
+□ Calcul valeur (IN et OUT)
+□ Test : sélectionne produit + saisie quantité
+         → stock et valeur se mettent à jour
+
+🕐 00:55 — 01:20 (25 min) — Validation + Enregistrer
+□ Validation champs vides
+□ Validation quantité > 0
+□ Validation stock suffisant si OUT
+□ service.addEntry() si IN
+□ service.addExit() si OUT
+□ Message succès + redirect DashboardPage
+
+🕐 01:20 — 01:40 (20 min) — Tests complets
+□ Test IN  produit existant
+□ Test IN  nouveau produit
+□ Test OUT quantité valide
+□ Test OUT quantité > stock → erreur
+□ Test     champs vides → erreur
+
+🕐 01:40 — 02:00 (20 min) — Buffer
+□ Correction bugs trouvés pendant les tests
+□ Compilation finale propre
+□ Révision rapide de MovementFormPage à l'oral
