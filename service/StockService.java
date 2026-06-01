@@ -9,6 +9,7 @@ public class StockService {
 
     private final ProductDAO productDAO = new ProductDAO();
     private final StockMovementDAO movementDAO = new StockMovementDAO();
+    private final PendingMovementDAO pendingDAO = new PendingMovementDAO();
 
     // ── ENTRÉE ──────────────────────────────────────────────
     public void addEntry(int productId, double quantity,
@@ -150,5 +151,25 @@ public double calculateExitPrice(int id, double qty) {
 public List <Product> searchProducts (String Keyword) throws SQLException {
     return productDAO.findByNameContaining(Keyword);
 }
+
+public void addPending(StockMovement m) throws SQLException {
+    pendingDAO.insert(m);
+}
+
+public List<StockMovement> getPendingMovements() throws SQLException {
+    return pendingDAO.findAll();
+}
+
+public void deletePending(int id) throws SQLException {
+    pendingDAO.delete(id);
+}
+public void validerMouvement(int pendingId) throws SQLException {
+    StockMovement m  = pendingDAO.findById(pendingId);
+    StockMovement validated = new StockMovement(m.getProductId(), m.getMovementType(),
+                                                m.getQuantity(), m.getUnitPrice(), m.getMovementDate());
+    movementDAO.insert(validated);
+    pendingDAO.delete(pendingId);
+}
+
 }
 

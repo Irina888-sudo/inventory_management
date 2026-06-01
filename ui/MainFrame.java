@@ -88,6 +88,8 @@ public class MainFrame extends JFrame {
             {"➕", "Ajouter (IN)"},
             {"➖", "Sortir (OUT)"},
             {"🕐", "Historique"},
+            {"⚡", "Mouvement"},
+            {"⏳", "En attente"},
         };
 
         for (String[] item : navItems) {
@@ -103,6 +105,8 @@ public class MainFrame extends JFrame {
                     case "Ajouter (IN)"   -> showPage(new AddProductPage(service, this));
                     case "Sortir (OUT)"   -> showPage(new ExitProductPage(service, MainFrame.this));
                     case "Historique"     -> showPage(new HistoryPage(service));
+                    case "Mouvement" -> showPage(new MovementFormPage(service, this));
+                    case "En attente" -> showPage(new PendingMovementPage(service, this));
                 }
             });
 

@@ -72,56 +72,56 @@ debug
 
 
 
-□ Squelette complet MovementFormPage.java
-□ Ajout dans sidebar MainFrame.java
+✔ Squelette complet MovementFormPage.java @done(26-05-31 15:05)
+✔ Ajout dans sidebar MainFrame.java @done(26-05-31 15:05)
+✔ @done(26-05-31 15:05)
 
 
+✔ 1. Listener JComboBox type (IN/OUT) @done(26-05-31 15:05)
+      ✔ si IN  : rendre tfPrix visible @done(26-05-31 15:05)
+      ✔ si OUT : cacher tfPrix @done(26-05-31 15:05)
 
-□ 1. Listener JComboBox type (IN/OUT)
-      → si IN  : rendre tfPrix visible
-      → si OUT : cacher tfPrix
+✔ 2. Calcul auto stock actuel @done(26-05-31 15:24)
+      ✔ quand produit change OU quantité saisie @done(26-05-31 15:24)
+      ✔ si IN  : stock = getStock() + qty @done(26-05-31 15:24)
+      ✔ si OUT : stock = getStock() - qty @done(26-05-31 15:24)
 
-□ 2. Calcul auto stock actuel
-      → quand produit change OU quantité saisie
-      → si IN  : stock = getStock() + qty
-      → si OUT : stock = getStock() - qty
-
-□ 3. Calcul auto valeur
-      → si IN  : valeur = qty × prixSaisi
-      → si OUT : valeur = qty × calculateExitPrice()
-
-□ 4. Validation formulaire
-      → produit sélectionné ?
-      → quantité > 0 ?
-      → si OUT : stock suffisant ?
-
-□ 5. Action bouton Enregistrer
-      → si IN  : service.addEntry(productId, qty, pu, date)
-      → si OUT : service.addExit(productId, qty, date)
-      → afficher message succès
-      → rediriger vers DashboardPage
-
-
+✔ 3. Calcul auto valeur @done(26-05-31 19:41)
+      ✔ si IN  : valeur = qty × prixSaisi @done(26-05-31 19:41)
+      ✔ si OUT : valeur = qty × calculateExitPrice() @done(26-05-31 19:41)
+✔ @done(26-05-31 19:41)
+✔ 4. Validation formulaire @done(26-05-31 19:41)
+      ✔ produit sélectionné ? @done(26-05-31 19:41)
+      ✔ quantité > 0 ? @done(26-05-31 19:41)
+      ✔ si OUT : stock suffisant ? @done(26-05-31 19:41)
+✔ @done(26-05-31 19:41)
+✔ 5. Action bouton Enregistrer @done(26-05-31 19:41)
+      ✔ si IN  : service.addEntry(productId, qty, pu, date) @done(26-05-31 19:41)
+      ✔ si OUT : service.addExit(productId, qty, date) @done(26-05-31 19:41)
+      ✔ afficher message succès @done(26-05-31 19:41)
+      ✔ rediriger vers DashboardPage @done(26-05-31 19:41)
+✔ @done(26-05-31 19:41)
+✔ @done(26-05-31 19:41)
 
       
 TO DO — 2 heures chrono
 
-🕐 00:00 — 00:10 (10 min) — Je génère
-□ Squelette MovementFormPage.java
-□ Ajout sidebar MainFrame.java
-□ Compilation test → java -cp out:postgresql-42.7.11.jar ui.MainFrame
-
-🕐 00:10 — 00:30 (20 min) — Listener IN/OUT
-□ JComboBox type change → affiche/cache tfPrix
-□ Test visuel : sélectionne IN → prix visible
-□ Test visuel : sélectionne OUT → prix caché
-
-🕐 00:30 — 00:55 (25 min) — Calculs auto
-□ Calcul stock actuel (IN et OUT)
-□ Calcul valeur (IN et OUT)
-□ Test : sélectionne produit + saisie quantité
-         → stock et valeur se mettent à jour
-
+✔ 🕐 00:00 — 00:10 (10 min) — Je génère @done(26-05-31 15:24)
+✔ Squelette MovementFormPage.java @done(26-05-31 15:24)
+✔ Ajout sidebar MainFrame.java @done(26-05-31 15:24)
+✔ Compilation test → java -cp out:postgresql-42.7.11.jar ui.MainFrame @done(26-05-31 15:24)
+✔ @done(26-05-31 15:24)
+✔ 🕐 00:10 — 00:30 (20 min) — Listener IN/OUT @done(26-05-31 15:24)
+✔ JComboBox type change → affiche/cache tfPrix @done(26-05-31 15:24)
+✔ Test visuel : sélectionne IN → prix visible @done(26-05-31 15:24)
+✔ Test visuel : sélectionne OUT → prix caché @done(26-05-31 15:24)
+✔ @done(26-05-31 15:24)
+✔ 🕐 00:30 — 00:55 (25 min) — Calculs auto @done(26-05-31 15:24)
+✔ Calcul stock actuel (IN et OUT) @done(26-05-31 15:24)
+✔ Calcul valeur (IN et OUT) @done(26-05-31 15:24)
+✔ Test : sélectionne produit + saisie quantité @done(26-05-31 15:24)
+         ✔ stock et valeur se mettent à jour @done(26-05-31 15:24)
+✔ @done(26-05-31 15:24)
 🕐 00:55 — 01:20 (25 min) — Validation + Enregistrer
 □ Validation champs vides
 □ Validation quantité > 0
@@ -140,4 +140,16 @@ TO DO — 2 heures chrono
 🕐 01:40 — 02:00 (20 min) — Buffer
 □ Correction bugs trouvés pendant les tests
 □ Compilation finale propre
-□ Révision rapide de MovementFormPage à l'oral
+□ Révision rapide de MovementFormPag
+
+
+
+
+
+
+
+
+
+
+
+wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
