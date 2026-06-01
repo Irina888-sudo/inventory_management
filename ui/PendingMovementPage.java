@@ -43,7 +43,11 @@ public class PendingMovementPage extends JPanel {
 
         table = new JTable(model);
         UITheme.styleTable(table);
+<<<<<<< Updated upstream
 
+=======
+       
+>>>>>>> Stashed changes
         // Largeurs colonnes
         int[] widths = {50, 160, 70, 90, 100, 110, 90, 90};
         for (int i = 0; i < widths.length; i++)
@@ -54,10 +58,20 @@ public class PendingMovementPage extends JPanel {
         table.getColumn("Valider").setCellRenderer(new ButtonRenderer("✅ Valider", UITheme.SUCCESS));
         table.getColumn("Valider").setCellEditor(new ButtonEditor(
             new JCheckBox(), "✅ Valider", UITheme.SUCCESS, row -> {
+<<<<<<< Updated upstream
                 int id = (int) model.getValueAt(row, 0);
                 try {
                     service.validerMouvement(id);
                     refresh();
+=======
+
+                int id = (int) model.getValueAt(row, 0);
+                System.out.println("Valider mouvement ID: " + id);
+
+                try {
+                    service.validerMouvement(id);
+                    // refresh();
+>>>>>>> Stashed changes
                 } catch (SQLException e) {
                     JOptionPane.showMessageDialog(this, e.getMessage());
                 }
@@ -68,6 +82,11 @@ public class PendingMovementPage extends JPanel {
         table.getColumn("Supprimer").setCellRenderer(new ButtonRenderer("🗑 Supprimer", UITheme.DANGER));
         table.getColumn("Supprimer").setCellEditor(new ButtonEditor(
             new JCheckBox(), "🗑 Supprimer", UITheme.DANGER, row -> {
+<<<<<<< Updated upstream
+=======
+            
+
+>>>>>>> Stashed changes
                 int id = (int) model.getValueAt(row, 0);
                 try {       
                     service.deletePending(id);
